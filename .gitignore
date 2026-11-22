@@ -1,0 +1,14 @@
+node_modules/
+client/node_modules/
+client/dist/
+dist/
+.env
+.env.*
+!.env.example
+.vercel/
+coverage/
+*.log
+.DS_Store
+.vscode/*
+!.vscode/launch.json
+*.zip

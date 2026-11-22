@@ -1,0 +1,5 @@
+7315110 Project setup, backend API, models, auth and tests
+540d852 Frontend: React app, routing, auth context, pages, components and tests
+eed740f Docs, Postman collection, debug config, smoke test and recorded test results
+5e6a949 Add git log record
+cb49bf9 Update git log record

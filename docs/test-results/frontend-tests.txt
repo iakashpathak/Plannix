@@ -1,0 +1,52 @@
+# Frontend tests (Vitest + React Testing Library) - 2026-11-21T14:02:56Z
+# Node v22.23.5
+
+ RUN  v2.1.9 /home/claude/taskflow/client
+
+ ✓ src/__tests__/Register.test.jsx > validateRegister > accepts valid values
+ ✓ src/__tests__/Register.test.jsx > validateRegister > flags short names, bad emails, weak passwords and mismatches
+ ✓ src/__tests__/Register.test.jsx > Register page > blocks submission when passwords differ 587ms
+ ✓ src/__tests__/Register.test.jsx > Register page > calls register (without the confirm field) when valid 420ms
+ ✓ src/__tests__/Register.test.jsx > Register page > shows inline server field errors (e.g. duplicate email)
+ ✓ src/__tests__/Dashboard.test.jsx > Dashboard page > renders greeting, stats, activity and project progress from the API
+ ✓ src/__tests__/Dashboard.test.jsx > Dashboard page > shows an empty state for a brand-new account
+ ✓ src/__tests__/Dashboard.test.jsx > Dashboard page > shows an error message with a retry button when the API fails
+ ✓ src/__tests__/TaskForm.test.jsx > TaskForm > requires a title and a project
+ ✓ src/__tests__/TaskForm.test.jsx > TaskForm > submits a clean payload with defaults
+ ✓ src/__tests__/TaskForm.test.jsx > TaskForm > pre-fills when editing and pre-selects the default project when creating
+ ✓ src/__tests__/TaskForm.test.jsx > TaskForm > shows a server error and re-enables the button
+ ✓ src/__tests__/format.test.js > getErrorMessage > prefers the API message
+ ✓ src/__tests__/format.test.js > getErrorMessage > explains network failures
+ ✓ src/__tests__/format.test.js > getErrorMessage > explains timeouts
+ ✓ src/__tests__/format.test.js > getErrorMessage > falls back for unknown errors
+ ✓ src/__tests__/format.test.js > getFieldErrors > maps API validation errors to a field->message object (first error wins)
+ ✓ src/__tests__/format.test.js > getFieldErrors > returns {} when there are none
+ ✓ src/__tests__/format.test.js > dates > formats a due date, with a placeholder when missing
+ ✓ src/__tests__/format.test.js > dates > converts to the yyyy-mm-dd format used by <input type=date>
+ ✓ src/__tests__/format.test.js > dates > detects overdue tasks (completed and undated tasks are never overdue)
+ ✓ src/__tests__/format.test.js > dates > formats relative time
+ ✓ src/__tests__/format.test.js > dates > greets by time of day
+ ✓ src/__tests__/Login.test.jsx > Login page > shows validation errors and does not call the API when the form is empty
+ ✓ src/__tests__/Login.test.jsx > Login page > rejects a malformed email
+ ✓ src/__tests__/Login.test.jsx > Login page > submits trimmed credentials and navigates to the dashboard on success
+ ✓ src/__tests__/Login.test.jsx > Login page > shows the server's error message when login fails
+ ✓ src/__tests__/AuthContext.test.jsx > AuthProvider > restores the session from /auth/me on first load
+ ✓ src/__tests__/AuthContext.test.jsx > AuthProvider > is anonymous when /auth/me fails with 401
+ ✓ src/__tests__/AuthContext.test.jsx > AuthProvider > login stores the user and logout clears it (even if the request fails)
+ ✓ src/__tests__/ProtectedRoute.test.jsx > route guards > redirects anonymous visitors from a protected page to /login
+ ✓ src/__tests__/ProtectedRoute.test.jsx > route guards > shows the protected page to a logged-in user
+ ✓ src/__tests__/ProtectedRoute.test.jsx > route guards > shows a loading state while the session is being checked (no flash of /login)
+ ✓ src/__tests__/ProtectedRoute.test.jsx > route guards > sends a logged-in user away from /login to the dashboard
+ ✓ src/__tests__/App.test.jsx > App routing (anonymous visitor) > redirects /dashboard to the login page
+ ✓ src/__tests__/App.test.jsx > App routing (anonymous visitor) > shows the registration page
+ ✓ src/__tests__/App.test.jsx > App routing (anonymous visitor) > shows a 404 page for unknown URLs
+ ✓ src/__tests__/Badges.test.jsx > badges > renders the task status text
+ ✓ src/__tests__/Badges.test.jsx > badges > renders the priority text
+ ✓ src/__tests__/Badges.test.jsx > FlowBar > describes the split accessibly
+ ✓ src/__tests__/Badges.test.jsx > FlowBar > handles zero tasks without crashing
+
+ Test Files  9 passed (9)
+      Tests  41 passed (41)
+   Start at  14:02:57
+   Duration  14.23s (transform 567ms, setup 1.93s, collect 2.09s, tests 3.36s, environment 4.17s, prepare 749ms)
+

@@ -1,0 +1,13 @@
+# Production build - 2026-11-21T14:03:11Z
+> taskflow-client@1.0.0 build
+> vite build
+
+vite v5.4.21 building for production...
+transforming...
+✓ 1670 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                   0.92 kB │ gzip:  0.48 kB
+dist/assets/index-BODWeTUo.css   21.48 kB │ gzip:  4.91 kB
+dist/assets/index-TyM36h2W.js   276.55 kB │ gzip: 88.73 kB
+✓ built in 4.70s

@@ -1,0 +1,112 @@
+# Backend tests (Vitest + Supertest) - 2026-11-21T14:02:46Z
+# Node v22.23.5 | MongoDB db version v8.0.23
+
+ RUN  v2.1.9 /home/claude/taskflow
+
+ ✓ tests/integration/auth.test.js > health > GET /api/health responds ok
+ ✓ tests/integration/auth.test.js > health > GET /api/health/db confirms the database connection
+ ✓ tests/integration/auth.test.js > POST /api/auth/register > creates a user, hashes the password, and sets an HTTP-only cookie
+ ✓ tests/integration/auth.test.js > POST /api/auth/register > rejects duplicate emails (409), case-insensitively
+ ✓ tests/integration/auth.test.js > POST /api/auth/register > returns 400 with field errors for invalid input ({"name":"A"} – short name)
+ ✓ tests/integration/auth.test.js > POST /api/auth/register > returns 400 with field errors for invalid input ({"email":"bad"} – bad email)
+ ✓ tests/integration/auth.test.js > POST /api/auth/register > returns 400 with field errors for invalid input ({"password":"short1"} – short password)
+ ✓ tests/integration/auth.test.js > POST /api/auth/register > returns 400 with field errors for invalid input ({"password":"alllettersss"} – password without number)
+ ✓ tests/integration/auth.test.js > POST /api/auth/register > ignores attempts to self-assign the admin role (mass assignment)
+ ✓ tests/integration/auth.test.js > POST /api/auth/register > returns 400 for malformed JSON
+ ✓ tests/integration/auth.test.js > POST /api/auth/login > logs in with correct credentials and sets a cookie
+ ✓ tests/integration/auth.test.js > POST /api/auth/login > rejects a wrong password with 401 and a generic message
+ ✓ tests/integration/auth.test.js > POST /api/auth/login > gives the SAME message for an unknown email (no user enumeration)
+ ✓ tests/integration/auth.test.js > POST /api/auth/login > returns 400 when fields are missing
+ ✓ tests/integration/auth.test.js > session: /me and logout > GET /api/auth/me returns the user when the cookie is present
+ ✓ tests/integration/auth.test.js > session: /me and logout > GET /api/auth/me returns 401 without a cookie
+ ✓ tests/integration/auth.test.js > session: /me and logout > rejects a forged / invalid token
+ ✓ tests/integration/auth.test.js > session: /me and logout > accepts an Authorization: Bearer token (Postman style)
+ ✓ tests/integration/auth.test.js > session: /me and logout > logout clears the cookie and the session stops working
+ ✓ tests/integration/auth.test.js > session: /me and logout > returns 401 if the user was deleted after the token was issued
+ ✓ tests/integration/auth.test.js > unknown routes > returns a JSON 404
+ ✓ tests/integration/tasks.test.js > Task CRUD > creates a task with defaults
+ ✓ tests/integration/tasks.test.js > Task CRUD > stores priority, status and due date
+ ✓ tests/integration/tasks.test.js > Task CRUD > rejects invalid input {"title":""} (empty title)
+ ✓ tests/integration/tasks.test.js > Task CRUD > rejects invalid input {"priority":"Urgent"} (bad priority)
+ ✓ tests/integration/tasks.test.js > Task CRUD > rejects invalid input {"status":"Done"} (bad status)
+ ✓ tests/integration/tasks.test.js > Task CRUD > rejects invalid input {"dueDate":"tomorrow-ish"} (bad date)
+ ✓ tests/integration/tasks.test.js > Task CRUD > rejects invalid input {"project":"abc"} (bad project id)
+ ✓ tests/integration/tasks.test.js > Task CRUD > requires an existing project
+ ✓ tests/integration/tasks.test.js > Task CRUD > updates a task, sets/clears completedAt, and can clear the due date
+ ✓ tests/integration/tasks.test.js > Task CRUD > rejects an empty update body
+ ✓ tests/integration/tasks.test.js > Task CRUD > gets one task and deletes it
+ ✓ tests/integration/tasks.test.js > Task search, filter, sort, pagination > filters by status, priority and project
+ ✓ tests/integration/tasks.test.js > Task search, filter, sort, pagination > searches title and description, case-insensitively
+ ✓ tests/integration/tasks.test.js > Task search, filter, sort, pagination > combines filters
+ ✓ tests/integration/tasks.test.js > Task search, filter, sort, pagination > sorts by due date and by priority (High first)
+ ✓ tests/integration/tasks.test.js > Task search, filter, sort, pagination > paginates
+ ✓ tests/integration/tasks.test.js > Task search, filter, sort, pagination > rejects invalid query params with 400
+ ✓ tests/integration/account.test.js > dashboard > returns zeros for a brand-new user
+ ✓ tests/integration/account.test.js > dashboard > computes totals, completion rate, overdue and activity feed
+ ✓ tests/integration/account.test.js > profile > updates name and email
+ ✓ tests/integration/account.test.js > profile > rejects an email that belongs to another user (409)
+ ✓ tests/integration/account.test.js > profile > validates input and requires login
+ ✓ tests/integration/account.test.js > change password > changes the password: old one stops working, new one works, stored as a hash
+ ✓ tests/integration/account.test.js > change password > rejects a wrong current password (400) and weak new passwords
+ ✓ tests/integration/account.test.js > admin role > lets an admin list users (without password hashes) and see system stats
+ ✓ tests/integration/projects.test.js > auth required > get /api/projects returns 401 without login
+ ✓ tests/integration/projects.test.js > auth required > post /api/projects returns 401 without login
+ ✓ tests/integration/projects.test.js > auth required > get /api/tasks returns 401 without login
+ ✓ tests/integration/projects.test.js > auth required > post /api/tasks returns 401 without login
+ ✓ tests/integration/projects.test.js > auth required > get /api/dashboard returns 401 without login
+ ✓ tests/integration/projects.test.js > Project CRUD > creates a project owned by the logged-in user
+ ✓ tests/integration/projects.test.js > Project CRUD > cannot choose another owner via the request body
+ ✓ tests/integration/projects.test.js > Project CRUD > validates input (400)
+ ✓ tests/integration/projects.test.js > Project CRUD > lists projects with task counts, newest first, with search + status filter
+ ✓ tests/integration/projects.test.js > Project CRUD > search treats regex characters literally (no regex injection)
+ ✓ tests/integration/projects.test.js > Project CRUD > gets, updates and deletes a project
+ ✓ tests/integration/projects.test.js > Project CRUD > deleting a project also deletes its tasks
+ ✓ tests/integration/projects.test.js > Project CRUD > returns 400 for a malformed id and 404 for a missing one
+ ✓ tests/unit/schemas.test.js > registerSchema > accepts valid data and normalises the email
+ ✓ tests/unit/schemas.test.js > registerSchema > rejects invalid email
+ ✓ tests/unit/schemas.test.js > registerSchema > rejects short password
+ ✓ tests/unit/schemas.test.js > registerSchema > rejects password without a number
+ ✓ tests/unit/schemas.test.js > registerSchema > rejects password without a letter
+ ✓ tests/unit/schemas.test.js > registerSchema > rejects missing fields
+ ✓ tests/unit/schemas.test.js > loginSchema > requires email and password
+ ✓ tests/unit/schemas.test.js > passwordChangeSchema > rejects when new password equals current
+ ✓ tests/unit/schemas.test.js > task schemas > applies defaults on create
+ ✓ tests/unit/schemas.test.js > task schemas > rejects invalid priority, status and project id
+ ✓ tests/unit/schemas.test.js > task schemas > converts dueDate strings to Date, '' and null to null
+ ✓ tests/unit/schemas.test.js > task schemas > update requires at least one field and does not inject defaults
+ ✓ tests/unit/schemas.test.js > task schemas > query schema coerces page/limit and caps limit
+ ✓ tests/integration/ownership.test.js > data ownership & authorization > lists only the caller's own projects and tasks
+ ✓ tests/integration/ownership.test.js > data ownership & authorization > returns 404 (not 403) when reading someone else's project or task
+ ✓ tests/integration/ownership.test.js > data ownership & authorization > cannot update someone else's project or task
+ ✓ tests/integration/ownership.test.js > data ownership & authorization > cannot delete someone else's project or task
+ ✓ tests/integration/ownership.test.js > data ownership & authorization > cannot create a task inside someone else's project
+ ✓ tests/integration/ownership.test.js > data ownership & authorization > cannot move your own task into someone else's project
+ ✓ tests/integration/ownership.test.js > data ownership & authorization > dashboard statistics only count the caller's data
+ ✓ tests/integration/ownership.test.js > data ownership & authorization > regular users get 403 on admin routes
+ ✓ tests/unit/middleware.test.js > protect middleware > rejects requests without a token (401) before touching the database
+ ✓ tests/unit/middleware.test.js > protect middleware > rejects a malformed token (401)
+ ✓ tests/unit/middleware.test.js > authorize middleware > allows a matching role
+ ✓ tests/unit/middleware.test.js > authorize middleware > blocks other roles with 403
+ ✓ tests/unit/middleware.test.js > errorHandler > maps ApiError to its status
+ ✓ tests/unit/middleware.test.js > errorHandler > maps duplicate key errors to 409
+ ✓ tests/unit/middleware.test.js > errorHandler > maps CastError to 400
+ ✓ tests/unit/middleware.test.js > errorHandler > maps malformed JSON to 400
+ ✓ tests/unit/middleware.test.js > errorHandler > maps unknown errors to 500 without leaking internals
+ ✓ tests/unit/token.test.js > JWT helpers > signs and verifies a token containing the user id
+ ✓ tests/unit/token.test.js > JWT helpers > rejects a tampered token
+ ✓ tests/unit/token.test.js > JWT helpers > rejects a token signed with another secret
+ ✓ tests/unit/token.test.js > JWT helpers > rejects an expired token
+ ✓ tests/unit/token.test.js > cookie options > is httpOnly + lax in every environment
+ ✓ tests/unit/token.test.js > cookie options > is NOT secure outside production (so http://localhost works)
+ ✓ tests/unit/token.test.js > cookie options > is secure in production (HTTPS only)
+ ✓ tests/unit/password.test.js > password hashing (bcrypt) > produces a hash that differs from the plain password
+ ✓ tests/unit/password.test.js > password hashing (bcrypt) > generates a different hash each time (random salt)
+ ✓ tests/unit/password.test.js > password hashing (bcrypt) > verifies correct and incorrect passwords
+ ✓ tests/unit/password.test.js > password hashing (bcrypt) > User.comparePassword uses the stored hash
+ ✓ tests/unit/password.test.js > password hashing (bcrypt) > User JSON output never contains the password
+
+ Test Files  9 passed (9)
+      Tests  101 passed (101)
+   Start at  14:02:47
+   Duration  9.02s (transform 233ms, setup 35ms, collect 3.46s, tests 3.18s, environment 2ms, prepare 794ms)
+

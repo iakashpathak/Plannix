@@ -1,0 +1,86 @@
+# End-to-end smoke tests - 2026-11-21T14:03:23Z
+# Real MongoDB 8.0 (local), real Express server, real HTTP, cookie jar
+
+## A) Direct to Express API (http://localhost:5000)
+Smoke testing http://localhost:5000
+
+PASS  health endpoint responds
+PASS  database connection works (/api/health/db)
+PASS  protected route rejects anonymous request (401)
+PASS  register user A (201)
+PASS  auth cookie is HttpOnly
+PASS  duplicate email rejected (409)
+PASS  wrong password rejected (401)
+PASS  login works (200)
+PASS  session restored via cookie (/auth/me)
+PASS  create project (201)
+PASS  create task (201)
+PASS  update task status (200)
+PASS  search + filter finds the task
+PASS  dashboard stats are correct
+PASS  register user B (201)
+PASS  user B cannot read user A's project (404)
+PASS  user B cannot edit user A's task (404)
+PASS  user B cannot delete user A's project (404)
+PASS  normal user blocked from admin API (403)
+PASS  owner deletes project and its tasks (200)
+PASS  logout (200)
+PASS  session is gone after logout (401)
+
+ALL CHECKS PASSED
+
+## B) Through the Vite dev proxy (http://localhost:5173) - proves the proxy + same-origin cookies
+Smoke testing http://localhost:5173
+
+PASS  health endpoint responds
+PASS  database connection works (/api/health/db)
+PASS  protected route rejects anonymous request (401)
+PASS  register user A (201)
+PASS  auth cookie is HttpOnly
+PASS  duplicate email rejected (409)
+PASS  wrong password rejected (401)
+PASS  login works (200)
+PASS  session restored via cookie (/auth/me)
+PASS  create project (201)
+PASS  create task (201)
+PASS  update task status (200)
+PASS  search + filter finds the task
+PASS  dashboard stats are correct
+PASS  register user B (201)
+PASS  user B cannot read user A's project (404)
+PASS  user B cannot edit user A's task (404)
+PASS  user B cannot delete user A's project (404)
+PASS  normal user blocked from admin API (403)
+PASS  owner deletes project and its tasks (200)
+PASS  logout (200)
+PASS  session is gone after logout (401)
+
+ALL CHECKS PASSED
+
+## C) Vercel entry point api/index.js, NODE_ENV=production (http://localhost:5002)
+Smoke testing http://localhost:5002
+
+PASS  health endpoint responds
+PASS  database connection works (/api/health/db)
+PASS  protected route rejects anonymous request (401)
+PASS  register user A (201)
+PASS  auth cookie is HttpOnly
+PASS  duplicate email rejected (409)
+PASS  wrong password rejected (401)
+PASS  login works (200)
+PASS  session restored via cookie (/auth/me)
+PASS  create project (201)
+PASS  create task (201)
+PASS  update task status (200)
+PASS  search + filter finds the task
+PASS  dashboard stats are correct
+PASS  register user B (201)
+PASS  user B cannot read user A's project (404)
+PASS  user B cannot edit user A's task (404)
+PASS  user B cannot delete user A's project (404)
+PASS  normal user blocked from admin API (403)
+PASS  owner deletes project and its tasks (200)
+PASS  logout (200)
+PASS  session is gone after logout (401)
+
+ALL CHECKS PASSED
