@@ -205,7 +205,7 @@ pages → services/*.js → services/api.js (single Axios instance)
 ## 8. Deployment architecture (Vercel)
 
 ```
-GitHub push ─▶ Vercel build: npm install (root) → npm --prefix client install && build
+GitHub push ─▶ Vercel build: npm install (root) → npm --prefix client install --include=dev && build
                 │
                 ├─ static files: client/dist  (served from Vercel's CDN)
                 └─ serverless function: api/index.js (Express app) ── MongoDB Atlas

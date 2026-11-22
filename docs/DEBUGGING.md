@@ -80,7 +80,7 @@
 2. Visit `/api/health` first (function alive?), then `/api/health/db` (DB reachable?).
 3. Env vars: correct *environment* (Production vs Preview), spelled exactly, then **Redeploy**.
 4. HTML returned for `/api/*` → rewrites wrong/missing; JSON 404 for page refresh → SPA rewrite missing. Compare with `vercel.json`.
-5. Build can't find packages → root `installCommand` + client install in `buildCommand`.
+5. Build can't find `vite` → ensure the client install in `buildCommand` uses `npm --prefix client install --include=dev`; Vercel may omit dev dependencies in production mode.
 6. `FUNCTION_INVOCATION_FAILED` → open the log, look for the first stack trace (usually missing env var or a wrong import path/case: Linux is case-sensitive, `Task.js` ≠ `task.js`).
 7. Works locally but not deployed: diff env vars, Node version (`engines` is `>=18`), file name casing, hard-coded `localhost` URLs.
 8. After fixing: `BASE_URL=https://… node scripts/smoke-test.mjs`.

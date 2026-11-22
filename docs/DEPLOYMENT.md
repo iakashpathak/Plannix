@@ -48,7 +48,7 @@ Full steps: [MANUAL_CONNECTION_GUIDE.md → Part B](MANUAL_CONNECTION_GUIDE.md#p
 | Key | Purpose |
 |---|---|
 | `installCommand` | installs root (API) dependencies |
-| `buildCommand` | installs client deps and runs `vite build` |
+| `buildCommand` | installs client dependencies (including dev dependencies such as Vite) and runs `vite build` |
 | `outputDirectory` | folder Vercel serves statically (`client/dist`) |
 | `rewrites[0]` `/api/(.*)` → `/api` | every API URL runs `api/index.js` (Express) |
 | `rewrites[1]` anything except `/api/…` → `/index.html` | lets React Router handle deep links/refresh. Real files (JS/CSS/images) are served before rewrites apply |

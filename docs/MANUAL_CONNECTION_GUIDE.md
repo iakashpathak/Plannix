@@ -358,7 +358,7 @@ Vercel clones the repo, runs `npm install` at the root (backend deps), runs the 
 ### 4. Exact steps
 1. Complete Part D (code on GitHub) and Part B (Atlas user + Network Access `0.0.0.0/0`).
 2. https://vercel.com → sign up with GitHub → **Add New… → Project** → pick the `taskflow` repo → **Import** (authorize the GitHub app for that repo if asked).
-3. **Configure Project:** *Framework Preset*: **Other**. *Root Directory*: `./` (the repo root). Leave Build/Output overrides empty – `vercel.json` already sets `buildCommand`, `installCommand`, `outputDirectory`. (If you override them, use: Build `npm --prefix client install && npm --prefix client run build`, Output `client/dist`.)
+3. **Configure Project:** *Framework Preset*: **Other**. *Root Directory*: `./` (the repo root). Leave Build/Output overrides empty – `vercel.json` already sets `buildCommand`, `installCommand`, `outputDirectory`. (If you override them, use: Build `npm --prefix client install --include=dev && npm --prefix client run build`, Output `client/dist`.)
 4. **Environment Variables** (before deploying):
 
 | Name | Value | Notes |
@@ -406,7 +406,7 @@ vercel logs <deployment-url>
 ### 8. Common errors
 | Symptom | Cause | Fix |
 |---|---|---|
-| Build fails: `Cannot find module 'vite'` | Client deps not installed | `buildCommand` must start with `npm --prefix client install` |
+| Build fails: `vite: command not found` / `Cannot find module 'vite'` | Client dev dependencies were omitted in production mode | Use `npm --prefix client install --include=dev` in `buildCommand` |
 | `404` on `/tasks` after refresh | Missing SPA rewrite | Keep the second rewrite in `vercel.json` |
 | `/api/...` returns the React `index.html` | API rewrite missing/ordered after the SPA rule | Keep the `/api/(.*)` rule **first** |
 | `500 FUNCTION_INVOCATION_FAILED` | Runtime crash (missing env var, import error) | Read the function log; set `MONGODB_URI`/`JWT_SECRET`, redeploy |
