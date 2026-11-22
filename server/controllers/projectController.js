@@ -9,8 +9,15 @@ export const escapeRegex = (s) => s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
 // Adds { total, pending, inProgress, completed } to each project in one aggregation (no N+1 queries).
 async function withTaskCounts(projects, ownerId) {
+  if (projects.length === 0) return [];
+
   const rows = await Task.aggregate([
-    { $match: { owner: new mongoose.Types.ObjectId(String(ownerId)) } },
+    {
+      $match: {
+        owner: new mongoose.Types.ObjectId(String(ownerId)),
+        project: { $in: projects.map((project) => project._id) },
+      },
+    },
     { $group: { _id: { project: "$project", status: "$status" }, count: { $sum: 1 } } },
   ]);
   const map = new Map();

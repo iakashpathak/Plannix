@@ -36,25 +36,29 @@ export const listTasks = asyncHandler(async (req, res) => {
     filter.$or = [{ title: rx }, { description: rx }];
   }
 
-  let tasks;
-  const total = await Task.countDocuments(filter);
+  const totalPromise = Task.countDocuments(filter);
+  let tasksPromise;
   if (sort === "priority") {
     // Sort High > Medium > Low using an aggregation weight, then re-hydrate with populate.
     const weight = { $switch: { branches: [{ case: { $eq: ["$priority", "High"] }, then: 0 }, { case: { $eq: ["$priority", "Medium"] }, then: 1 }], default: 2 } };
-    const ids = await Task.aggregate([
-      { $match: filter },
-      { $addFields: { w: weight } },
-      { $sort: { w: 1, createdAt: -1 } },
-      { $skip: (page - 1) * limit },
-      { $limit: limit },
-      { $project: { _id: 1 } },
-    ]);
-    const order = ids.map((d) => String(d._id));
-    const docs = await Task.find({ _id: { $in: order } }).populate(POPULATE).lean();
-    tasks = docs.sort((a, b) => order.indexOf(String(a._id)) - order.indexOf(String(b._id)));
+    tasksPromise = (async () => {
+      const ids = await Task.aggregate([
+        { $match: filter },
+        { $addFields: { w: weight } },
+        { $sort: { w: 1, createdAt: -1 } },
+        { $skip: (page - 1) * limit },
+        { $limit: limit },
+        { $project: { _id: 1 } },
+      ]);
+      const order = ids.map((d) => String(d._id));
+      const docs = await Task.find({ _id: { $in: order } }).populate(POPULATE).lean();
+      const positions = new Map(order.map((id, index) => [id, index]));
+      return docs.sort((a, b) => positions.get(String(a._id)) - positions.get(String(b._id)));
+    })();
   } else {
-    tasks = await Task.find(filter).sort(SORTS[sort]).skip((page - 1) * limit).limit(limit).populate(POPULATE).lean();
+    tasksPromise = Task.find(filter).sort(SORTS[sort]).skip((page - 1) * limit).limit(limit).populate(POPULATE).lean();
   }
+  const [total, tasks] = await Promise.all([totalPromise, tasksPromise]);
 
   res.json({ success: true, data: { tasks, pagination: { page, limit, total, pages: Math.max(1, Math.ceil(total / limit)) } } });
 });
