@@ -14,14 +14,12 @@ export const Logo = ({ dark = true, large = false }) => (
   <span className={`flex items-center ${large ? "gap-3" : "gap-2.5"}`}>
     <span className={`flex items-center justify-center bg-ink-800 ${large ? "h-10 w-10 rounded-xl" : "h-8 w-8 rounded-lg"}`}>
       <svg viewBox="0 0 32 32" className={large ? "h-6 w-6" : "h-5 w-5"} aria-hidden="true">
-        <path d="M8 9h9a4 4 0 0 1 0 8h-4" stroke="#3fd0db" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <path d="m16 14-3 3 3 3" stroke="#fff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
-        <path d="M8 23h9" stroke="#3fd0db" strokeWidth="2.8" strokeLinecap="round" fill="none" />
-        <circle cx="8" cy="9" r="1.4" fill="#fff" />
-        <circle cx="8" cy="23" r="1.4" fill="#fff" />
+        <rect x="7" y="8" width="18" height="18" rx="3" stroke="#3fd0db" strokeWidth="2.6" fill="none" />
+        <path d="M12 6v5M20 6v5" stroke="#fff" strokeWidth="2.4" strokeLinecap="round" />
+        <path d="m11 18.5 3 3 7-7" stroke="#fff" strokeWidth="2.8" strokeLinecap="round" strokeLinejoin="round" fill="none" />
       </svg>
     </span>
-    <span className={`font-display font-bold ${large ? "text-2xl" : "text-xl"} ${dark ? "text-white" : "text-ink-900"}`}>TaskFlow</span>
+    <span className={`font-display font-bold ${large ? "text-2xl" : "text-xl"} ${dark ? "text-white" : "text-ink-900"}`}>Plannix</span>
   </span>
 );
 

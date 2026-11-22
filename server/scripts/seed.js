@@ -6,7 +6,7 @@ import Project from "../models/Project.js";
 import Task from "../models/Task.js";
 import User from "../models/User.js";
 
-const DEMO = { name: "Demo Student", email: "demo@taskflow.dev", password: "Demo1234" };
+const DEMO = { name: "Demo Student", email: "demo@plannix.dev", password: "Demo1234" };
 const day = (n) => new Date(Date.now() + n * 86400000);
 
 await connectDB();

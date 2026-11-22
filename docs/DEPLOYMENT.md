@@ -39,7 +39,7 @@ Full steps: [MANUAL_CONNECTION_GUIDE.md → Part B](MANUAL_CONNECTION_GUIDE.md#p
 > Security note on `0.0.0.0/0`: it removes the IP allow-list as a layer of defence, so the long random password (and never committing it) is what protects the database. Use a user restricted to the `taskflow` database, and rotate the password if exposed.
 
 ## 3. Vercel
-1. Sign in at vercel.com with GitHub → **Add New → Project** → import `taskflow`.
+1. Sign in at vercel.com with GitHub → **Add New → Project** → import the existing `taskflow` repository.
 2. Framework Preset **Other**, Root Directory `./`. Leave build/output blank (taken from `vercel.json`).
 3. Add environment variables (below) → **Deploy**.
 4. Open the URL → verify (section 5).

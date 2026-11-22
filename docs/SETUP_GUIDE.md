@@ -1,4 +1,4 @@
-# Setup Guide – Running TaskFlow Locally
+# Setup Guide – Running Plannix Locally
 
 Follow this top to bottom. Each step says what to expect, so you know it worked.
 
@@ -15,7 +15,7 @@ Follow this top to bottom. Each step says what to expect, so you know it worked.
 ## 2. Unzip and install dependencies
 
 ```bash
-unzip TaskFlow_FullStack_MiniProject.zip     # or use your file manager
+unzip Plannix_FullStack_MiniProject.zip      # or use your file manager
 cd taskflow
 npm run install:all
 ```
@@ -59,7 +59,7 @@ Edit `.env`:
 ```bash
 npm run seed
 ```
-Creates `demo@taskflow.dev` / `Demo1234` with 3 projects and 7 tasks (including an overdue one). Safe to re-run: it recreates the demo user's data.
+Creates `demo@plannix.dev` / `Demo1234` with 3 projects and 7 tasks (including an overdue one). Safe to re-run: it recreates the demo user's data.
 
 ## 6. Start the app
 
@@ -69,7 +69,7 @@ npm run dev
 Expected output (colours aside):
 ```
 [api] MongoDB connected
-[api] TaskFlow API listening on http://localhost:5000
+[api] Plannix API listening on http://localhost:5000
 [web]   VITE v5.x  ready in …ms
 [web]   ➜  Local:   http://localhost:5173/
 ```

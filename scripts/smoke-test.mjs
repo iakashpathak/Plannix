@@ -1,4 +1,4 @@
-// End-to-end smoke test against ANY running TaskFlow URL (local, Vite proxy, or your live Vercel site).
+// End-to-end smoke test against ANY running Plannix URL (local, Vite proxy, or your live Vercel site).
 //   BASE_URL=http://localhost:5173 node scripts/smoke-test.mjs
 //   BASE_URL=https://your-app.vercel.app node scripts/smoke-test.mjs
 // It creates two throw-away users, exercises the main flows, and prints PASS/FAIL for each check.

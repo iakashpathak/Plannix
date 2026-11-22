@@ -45,7 +45,7 @@ export default function Login() {
       mobileBrandHeader
       footer={
         <>
-          New to TaskFlow?{" "}
+          New to Plannix?{" "}
           <Link to="/register" className="font-semibold text-brand-600 hover:underline">
             Create an account
           </Link>

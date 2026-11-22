@@ -1,4 +1,4 @@
-# TaskFlow API Documentation
+# Plannix API Documentation
 
 Base URL: `http://localhost:5000/api` (local) · `https://<your-app>.vercel.app/api` (production).
 Format: JSON. Authentication: HTTP-only cookie `token` (set by login/register), or `Authorization: Bearer <jwt>` (handy in Postman).
@@ -100,8 +100,8 @@ Fields: `title` (1–120, required), `description` (≤1000), `project` (ObjectI
 
 ## cURL examples (cookie jar)
 ```bash
-curl -c jar.txt -H "Content-Type: application/json" -d '{"email":"demo@taskflow.dev","password":"Demo1234"}' http://localhost:5000/api/auth/login
+curl -c jar.txt -H "Content-Type: application/json" -d '{"email":"demo@plannix.dev","password":"Demo1234"}' http://localhost:5000/api/auth/login
 curl -b jar.txt http://localhost:5000/api/projects
 curl -b jar.txt -H "Content-Type: application/json" -d '{"name":"My project"}' http://localhost:5000/api/projects
 ```
-A ready-made Postman collection is in `docs/postman/TaskFlow.postman_collection.json` (import it, set `baseUrl`).
+A ready-made Postman collection is in `docs/postman/Plannix.postman_collection.json` (import it, set `baseUrl`).

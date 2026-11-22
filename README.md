@@ -1,6 +1,6 @@
-# TaskFlow
+# Plannix
 
-TaskFlow is a project and task management application for organizing work, tracking priorities, and monitoring progress in one place. It includes a responsive React interface, an Express API, and MongoDB persistence.
+Plannix is a project and task management application for organizing work, tracking priorities, and monitoring progress in one place. It includes a responsive React interface, an Express API, and MongoDB persistence.
 
 ## Features
 

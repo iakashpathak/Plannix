@@ -1,6 +1,6 @@
 {
   "info": {
-    "name": "TaskFlow API",
+    "name": "Plannix API",
     "description": "Run Register/Login first. Postman keeps the HTTP-only 'token' cookie in its cookie jar, just like a browser. Set baseUrl to your deployment URL to test production.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },

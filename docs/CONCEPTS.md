@@ -1,4 +1,4 @@
-# Concepts, Explained Through TaskFlow
+# Concepts, Explained Through Plannix
 
 Each concept is tied to a real file so you can open it and see it.
 

@@ -13,4 +13,4 @@ try {
   console.error("The API will still start; /api/health works, data routes return 503 until the DB is reachable.");
 }
 
-app.listen(port, () => console.log(`TaskFlow API listening on http://localhost:${port}`));
+app.listen(port, () => console.log(`Plannix API listening on http://localhost:${port}`));

@@ -1,8 +1,8 @@
 {
-  "name": "taskflow",
+  "name": "plannix",
   "version": "1.0.0",
   "private": true,
-  "description": "TaskFlow - full stack task management system (React + Express + MongoDB, deployable on Vercel)",
+  "description": "Plannix - full stack task management system (React + Express + MongoDB, deployable on Vercel)",
   "type": "module",
   "engines": { "node": ">=18" },
   "scripts": {

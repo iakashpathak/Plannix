@@ -1,4 +1,4 @@
-# TaskFlow Architecture
+# Plannix Architecture
 
 ## 1. The big picture
 

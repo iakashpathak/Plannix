@@ -88,7 +88,7 @@ Data must outlive server restarts (and serverless functions have no disk). Mongo
 ### 3. How it works
 `mongoose.connect(uri)` opens a TLS connection to the cluster using the credentials inside the URI. The URI (`mongodb+srv://`) is resolved via DNS to the cluster's nodes. Atlas only accepts connections from IPs on its **Network Access** list and from users in **Database Access**. Models (`mongoose.model("Task", schema)`) map to collections (`tasks`).
 ### 4. Exact steps
-1. Sign up at https://www.mongodb.com/cloud/atlas and create an **Organization → Project** (name: TaskFlow).
+1. Sign up at https://www.mongodb.com/cloud/atlas and create an **Organization → Project** (name: Plannix).
 2. **Create a cluster** → choose the free (M0) tier, a region near you (e.g. Mumbai for India), create.
 3. **Database Access → Add New Database User** → authentication: Password. Username e.g. `taskflow_app`; use *Autogenerate* and **copy the password now**. Role: *Read and write to any database* (or restrict to the `taskflow` database).
 4. **Network Access → Add IP Address**
@@ -330,7 +330,7 @@ expect(await screen.findByText("Email is required")).toBeInTheDocument();
 ```
 Database operation test: `tests/integration/*` reads the DB directly (e.g. `User.findOne().select("+password")`) to prove the stored value is a bcrypt hash.
 
-**Postman:** Import `docs/postman/TaskFlow.postman_collection.json` → run **Register**, **Login** (Postman's cookie jar stores the HttpOnly cookie) → run any request. Set the `baseUrl` variable to your Vercel URL to test production.
+**Postman:** Import `docs/postman/Plannix.postman_collection.json` → run **Register**, **Login** (Postman's cookie jar stores the HttpOnly cookie) → run any request. Set the `baseUrl` variable to your Vercel URL to test production.
 **Browser DevTools:** *Network* tab → click the request → *Headers* (status, `Set-Cookie`), *Payload*, *Response*. *Application → Cookies* shows `token`. *Console* shows React errors. *React DevTools* extension inspects components/context.
 **VS Code debugger:** open `server/controllers/taskController.js`, click left of a line number to set a breakpoint, choose **Debug API (Node)** (F5), make the request, inspect `req.body`, `req.user`.
 **MongoDB debugging:** Atlas *Browse Collections*; in code `mongoose.set("debug", true)` prints every query; `mongosh "<uri>"` then `db.tasks.find({owner: ObjectId("…")})`.
